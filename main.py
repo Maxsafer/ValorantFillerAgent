@@ -4,12 +4,10 @@ from tkinter import *
 from tkinter.ttk import *
 import random
 import csv
-
-file = open('comps\comps.csv')
-csvreader = csv.reader(file)
+from os import listdir, path
 
 root= tk.Tk()
-root.title('FillerAgent v1.01 by classman')
+root.title('FillerAgent v1.02 by classman')
 root.geometry("400x400")
 root.iconbitmap("icons/valorant.ico")
 
@@ -24,11 +22,11 @@ label1 = tk.Label(root, text='')
 global label3
 label3 = tk.Label(root, text='')
 
-label6 = tk.Label(root, text='Filler Agent v1.01', bg='#0f1923')
+label6 = tk.Label(root, text='Filler Agent v1.02', bg='#0f1923')
 label6.config(font=('helvetica', 14, 'bold'), fg='white')
 canvas1.create_window(200, 30, window=label6)
 
-label4 = tk.Label(root, text='(MARCH2022 4.04)', bg='#0f1923')
+label4 = tk.Label(root, text='(MAY2022 4.08)', bg='#0f1923')
 label4.config(font=('helvetica', 10), fg='white')
 canvas1.create_window(200, 52, window=label4)
 
@@ -40,67 +38,7 @@ label5 = tk.Label(root, text='Possible filler agents:', bg='#0f1923')
 label5.config(font=('helvetica', 10, 'bold'), fg='white')
 canvas1.create_window(200, 350, window=label5)
 
-agents = [] #agents selected
-map = [] #map selected
-map.append('noMap') #default map not selected
-recommended = [] #results
-#AGENT ROLES
-controllerS = ['Astra','Brimstone','Omen','Viper']
-initiatorS = ['Breach','KO','Skye','Sova']
-sentinelS = ['Chamber','Cypher','Killjoy','Sage']
-duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
-#COMPS
-asc = [] #8
-bnd = [] #12
-bre = [] #11
-fra = [] #7
-hav = [] #12
-ice = [] #11
-spl = [] #10
-header = []
-header = next(csvreader)
-for row in csvreader:
-  if header[0] == 'Ascent':
-    if row[0] == 'Bind':
-      header.clear()
-      header.append(row[0])
-    else:
-      asc.append(row)
-  elif header[0] == 'Bind':
-    if row[0] == 'Breeze':
-      header.clear()
-      header.append(row[0])
-    else:
-      bnd.append(row)
-  elif header[0] == 'Breeze':
-    if row[0] == 'Fracture':
-      header.clear()
-      header.append(row[0])
-    else:
-      bre.append(row)
-  elif header[0] == 'Fracture':
-    if row[0] == 'Haven':
-      header.clear()
-      header.append(row[0])
-    else:
-      fra.append(row)
-  elif header[0] == 'Haven':
-    if row[0] == 'Icebox':
-      header.clear()
-      header.append(row[0])
-    else:
-      hav.append(row)
-  elif header[0] == 'Icebox':
-    if row[0] == 'Split':
-      header.clear()
-      header.append(row[0])
-    else:
-      ice.append(row)
-  else:
-    spl.append(row)
-file.close()
-
-#MAPS - ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT ####################################################
+#SELECT MAPS ##################################################
 def selectMap (mapz, button): 
     map.clear()
     map.append(mapz)
@@ -138,7 +76,7 @@ canvas1.create_window(60, 110, window=buttonICE)
 buttonSPL = tk.Button(height = 1, width = 8, text='Split', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Split", buttonSPL)], bg='#292929', fg='white', activebackground="#e04252")
 canvas1.create_window(130, 110, window=buttonSPL)
 
-#AGENTS ####################################################
+#SELECT AGENTS ############################################
 def appendAgent (name,button):  
     if len(agents) < 4:
       agents.append(name)
@@ -173,7 +111,7 @@ button6 = tk.Button(height = 21, width = 63, text='Jett', command=lambda:[append
 canvas1.create_window(60, 210, window=button6)
 #KO7
 kAYOPhoto = PhotoImage(file = "icons\KAYO_icon.png")
-button7 = tk.Button(height = 21, width = 63, text='K/O', command=lambda:[appendAgent("KO", button7)], image = kAYOPhoto, bg='white', borderwidth=0, activebackground="white")
+button7 = tk.Button(height = 21, width = 63, text='KAY/O', command=lambda:[appendAgent("KAY/O", button7)], image = kAYOPhoto, bg='white', borderwidth=0, activebackground="white")
 canvas1.create_window(130, 210, window=button7)
 #KJ8
 killjoyPhoto = PhotoImage(file = "icons\Killjoy_icon.png")
@@ -219,13 +157,17 @@ canvas1.create_window(130, 270, window=button17)
 yoruPhoto = PhotoImage(file = "icons\Yoru_icon.png")
 button18 = tk.Button(height = 21, width = 63, text='Yoru', command=lambda:[appendAgent("Yoru", button18)], image = yoruPhoto, bg='white', borderwidth=0, activebackground="white")
 canvas1.create_window(200, 270, window=button18)
+#FADE19
+fadePhoto = PhotoImage(file = "icons\Fade_icon.png")
+button19 = tk.Button(height = 21, width = 63, text='Fade', command=lambda:[appendAgent("Fade", button19)], image = fadePhoto, bg='white', borderwidth=0, activebackground="white")
+canvas1.create_window(270, 270, window=button19)
 
-#ACTIONS ####################################################
+#SELECT ACTIONS ####################################################
 #DELETE LABEL
 def delLabel (): 
   label1.destroy()
 
-#CLEAR
+#CLEARS
 def clear ():  
     agents.clear()
     recommended.clear()
@@ -249,13 +191,14 @@ def clear ():
     button16['state'] = 'normal'
     button17['state'] = 'normal'
     button18['state'] = 'normal'
+    button19['state'] = 'normal'
     buttonRecomend['state'] = 'normal'
     buttonSuggest['state'] = 'normal'
 clearPhoto = PhotoImage(file = "icons\clear.png")
 buttonClear = tk.Button(height = 22, width = 63, text='Clear', command=clear, image = clearPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(130, 325, window=buttonClear)
 
-#RECOMMEND BASED ON PRO COMPS
+#RECOMMEND BASED ON PRO COMPS ######################################
 def recommend ():
   recommended.clear()
   #ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT 
@@ -332,7 +275,7 @@ fillPhoto = PhotoImage(file = "icons\ill.png")
 buttonRecomend = tk.Button(height = 22, width = 63, text='Fill', command=recommend, image = fillPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(200, 325, window=buttonRecomend)
 
-#SUGGEST FULL COMP
+#SUGGEST FULL COMP #################################################
 def suggest ():  
     delLabel()
     label3.destroy()
@@ -362,8 +305,8 @@ fullPhoto = PhotoImage(file = "icons\ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
 
-#AI COMP FILLER
-def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
+#AI COMP FILLER ####################################################
+def make ():
   #controllerS, initiatorS, sentinelS, duelistS
   compMake = [0,0,0,0,0]
   suma = 0
@@ -390,7 +333,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
         compMake[3] = 1
       elif x == 3 :
         suma += 1
-      if x == 4 and (counter == 2 or 'KO' in agents or 'Skye' in agents or 'Breach' in agents or 'Chamber' in agents) :
+      if x == 4 and (counter == 2 or 'KAY/O' in agents or 'Skye' in agents or 'Breach' in agents or 'Chamber' in agents) :
         compMake[4] = 1
       elif x == 4 :
         suma += 1
@@ -411,7 +354,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
     elif compMake.index(0) == 4 and suma == 1:
       recommended.clear()
       recommended.append('Skye')
-      recommended.append('KO')
+      recommended.append('KAY/O')
       recommended.append('Chamber')
   elif map[0] == 'Bind' :
     #duelistsMake = []
@@ -480,7 +423,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
         compMake[3] = 1
       elif x == 3 :
         suma += 1
-      if x == 4 and (counter == 2 or 'KO' in agents or 'Skye' in agents) :
+      if x == 4 and (counter == 2 or 'KAY/O' in agents or 'Skye' in agents) :
         compMake[4] = 1
       elif x == 4 :
         suma += 1
@@ -500,7 +443,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
     elif compMake.index(0) == 4 and suma == 1:
       recommended.clear()
       recommended.append('Duelist')
-      recommended.append('KO')
+      recommended.append('KAY/O')
       recommended.append('Skye')
   elif map[0] == 'Fracture' :
     for x in range(0,5):
@@ -569,7 +512,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
         compMake[2] = 1
       elif x == 2 :
         suma += 1
-      if x == 3 and ('Skye' in agents or 'KO' in agents) or (counter == 2) :
+      if x == 3 and ('Skye' in agents or 'KAY/O' in agents) or (counter == 2) :
         compMake[3] = 1
       elif x == 3 :
         suma += 1
@@ -592,7 +535,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
     elif compMake.index(0) == 3 and suma == 1:
       recommended.clear()
       recommended.append('Skye')
-      recommended.append('KO')
+      recommended.append('KAY/O')
     elif compMake.index(0) == 4 and suma == 1:
       recommended.clear()
       recommended.append('Sova')
@@ -617,7 +560,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
         compMake[3] = 1
       elif x == 3 :
         suma += 1
-      if x == 4 and ('Skye' in agents or 'KO' in agents) or (counter == 2) :
+      if x == 4 and ('Skye' in agents or 'KAY/O' in agents) or (counter == 2) :
         compMake[4] = 1
       elif x == 4 :
         suma += 1
@@ -636,7 +579,7 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
     elif compMake.index(0) == 4 and suma == 1:
       recommended.clear()
       recommended.append('Skye')
-      recommended.append('KO')
+      recommended.append('KAY/O')
   elif map[0] == 'Split' :
     for x in range(0,5):
       if x == 0 and any(x in controllerS for x in agents) :
@@ -681,5 +624,39 @@ def make (): #MAPS: ASCENT BIND BREEZE FRACTURE HAVEN ICEBOX SPLIT
     elif compMake.index(0) == 4 and suma == 1:
       recommended.clear()
       recommended.append('Sage')
+
+#MAIN OF THE CODE ##################################################
+if __name__ == '__main__':
+  agents = [] #agents selected
+  map = [] #map selected
+  map.append('noMap') #default map not selected
+  recommended = [] #results
+  #AGENT ROLES
+  controllerS = ['Astra','Brimstone','Omen','Viper']
+  initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
+  sentinelS = ['Chamber','Cypher','Killjoy','Sage']
+  duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
+  #COMPS
+  asc = []
+  bnd = []
+  bre = []
+  fra = []
+  hav = []
+  ice = []
+  spl = []
+  comps = [asc,bnd,bre,fra,hav,ice,spl]
+
+  #READ COMP FILES AND FILL COMP ARRAYS
+  fileArray = []
+  for file in listdir('./comps/'):
+    fileArray.append(file)
+
+  for x in range(0,len(listdir('./comps/'))):
+    file = open(f'./comps/{fileArray[x]}')
+    csvreader = csv.reader(file)
+    next(csvreader)
+    for row in csvreader:
+      comps[x].append(row)
+    file.close()
 
 root.mainloop()
