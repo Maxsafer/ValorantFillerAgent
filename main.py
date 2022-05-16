@@ -47,35 +47,33 @@ def selectMap (mapz, button):
     label3.destroy()
     buttonSuggest['state'] = 'normal'
     buttonRecomend['state'] = 'normal'
-    buttonASC['state'] = 'normal'
-    buttonBND['state'] = 'normal'
-    buttonBRE['state'] = 'normal'
-    buttonFRA['state'] = 'normal'
-    buttonHAV['state'] = 'normal'
-    buttonICE['state'] = 'normal'
-    buttonSPL['state'] = 'normal'
+    for mapx in maps:
+      eval(f'button{mapx}')['state'] = 'normal'
     button['state'] = 'disabled'
 #ASCENT
-buttonASC = tk.Button(height = 1, width = 8, text='Ascent', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Ascent", buttonASC)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(60, 80, window=buttonASC)
+buttonAscent = tk.Button(height = 1, width = 8, text='Ascent', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Ascent", buttonAscent)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(60, 80, window=buttonAscent)
 #BIND
-buttonBND = tk.Button(height = 1, width = 8, text='Bind', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Bind", buttonBND)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(130, 80, window=buttonBND)
+buttonBind = tk.Button(height = 1, width = 8, text='Bind', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Bind", buttonBind)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(130, 80, window=buttonBind)
 #BREEZE
-buttonBRE = tk.Button(height = 1, width = 8, text='Breeze', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Breeze", buttonBRE)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(200, 80, window=buttonBRE)
+buttonBreeze = tk.Button(height = 1, width = 8, text='Breeze', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Breeze", buttonBreeze)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(200, 80, window=buttonBreeze)
 #FRACTURE
-buttonFRA = tk.Button(height = 1, width = 8, text='Fracture', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Fracture", buttonFRA)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(270, 80, window=buttonFRA)
+buttonFracture = tk.Button(height = 1, width = 8, text='Fracture', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Fracture", buttonFracture)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(270, 80, window=buttonFracture)
 #HAVEN
-buttonHAV = tk.Button(height = 1, width = 8, text='Haven', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Haven", buttonHAV)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(340, 80, window=buttonHAV)
+buttonHaven = tk.Button(height = 1, width = 8, text='Haven', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Haven", buttonHaven)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(340, 80, window=buttonHaven)
 #ICEBOX
-buttonICE = tk.Button(height = 1, width = 8, text='Icebox', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Icebox", buttonICE)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(60, 110, window=buttonICE)
+buttonIcebox = tk.Button(height = 1, width = 8, text='Icebox', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Icebox", buttonIcebox)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(60, 110, window=buttonIcebox)
 #SPLIT
-buttonSPL = tk.Button(height = 1, width = 8, text='Split', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Split", buttonSPL)], bg='#292929', fg='white', activebackground="#e04252")
-canvas1.create_window(130, 110, window=buttonSPL)
+buttonSplit = tk.Button(height = 1, width = 8, text='Split', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Split", buttonSplit)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(130, 110, window=buttonSplit)
+# #HELL                                                               ++++++++++++++++++
+# buttonHell = tk.Button(height = 1, width = 8, text='Hell', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Hell", buttonHell)], bg='#292929', fg='white', activebackground="#e04252")
+# canvas1.create_window(200, 110, window=buttonHell)
 
 #SELECT AGENTS ############################################
 def appendAgent(name,button,five):  
@@ -172,6 +170,10 @@ canvas1.create_window(200, 270, window=buttonYoru)
 fadePhoto = PhotoImage(file = "icons\Fade_icon.png")
 buttonFade = tk.Button(height = 21, width = 63, text='Fade', command=lambda:[appendAgent("Fade", buttonFade, 0)], image = fadePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 270, window=buttonFade)
+# #MAX20                                                              ++++++++++++++++++
+# maxPhoto = PhotoImage(file = "icons\Max_icon.png")
+# buttonMax = tk.Button(height = 21, width = 63, text='Max', command=lambda:[appendAgent("Max", buttonMax, 0)], image = maxPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
+# canvas1.create_window(340, 270, window=buttonMax)
 
 #SELECT ACTIONS ####################################################
 #DELETE LABEL
@@ -185,12 +187,11 @@ def clear ():
     label1.destroy()
     label3.destroy()
 
-    #for loop each agent button and reset it
+    #for loop each agent button selected and reset it
     for button in buttons:
-      button['state'] = 'normal'  
-      string = button['text']
-      string = string[0].lower() + string[1:]
-      button.config(bg='white', height = 21, width = 63, image = eval(f'{string}Photo'.replace(r'/','')))
+      agentx = button['text']
+      agentx = agentx[0].lower() + agentx[1:]
+      button.config(bg='white', height = 21, width = 63, image = eval(f'{agentx}Photo'.replace(r'/','')))
     buttons.clear() #clears agents button array
 
     buttonRecomend['state'] = 'normal'
@@ -202,75 +203,44 @@ canvas1.create_window(130, 325, window=buttonClear)
 #RECOMMEND BASED ON PRO COMPS ######################################
 def recommend ():
   recommended.clear()
-  #ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT ASCENT 
-  if len(agents) == 4 and map[0] == 'Ascent':
-    for comps in asc :
+  topAgentsPrint = []
+  mapString = map[0]
+  mapString = mapString[0].lower() + mapString[1] + mapString[2]
+  #MAP DETECTED AND 4 AGENTS
+  if len(agents) == 4 and map[0] != 'noMap':
+    for comps in eval(mapString) :
       if all(x in comps for x in agents) == 1:
         for element in comps:
           if element not in agents:
             recommended.append(element) 
-  #BIND BIND BIND BIND BIND BIND BIND BIND BIND BIND BIND 
-  elif len(agents) == 4 and map[0] == 'Bind':
-    for comps in bnd :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element)   
-  #BREEZE BREEZE BREEZE BREEZE BREEZE BREEZE BREEZE BREEZE 
-  elif len(agents) == 4 and map[0] == 'Breeze':
-    for comps in bre :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element) 
-  #FRACTURE FRACTURE FRACTURE FRACTURE FRACTURE FRACTURE FRACTURE  
-  elif len(agents) == 4 and map[0] == 'Fracture':
-    for comps in fra :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element) 
-  #HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN HAVEN
-  elif len(agents) == 4 and map[0] == 'Haven':
-    for comps in hav :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element) 
-  #ICEBOX ICEBOX ICEBOX ICEBOX ICEBOX ICEBOX ICEBOX ICEBOX ICEBOX
-  elif len(agents) == 4 and map[0] == 'Icebox':
-    for comps in ice :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element) 
-  #SPLIT SPLIT SPLIT SPLIT SPLIT SPLIT SPLIT SPLIT SPLIT SPLIT
-  elif len(agents) == 4 and map[0] == 'Split':
-    for comps in spl :
-      if all(x in comps for x in agents) == 1:
-        for element in comps:
-          if element not in agents:
-            recommended.append(element) 
+    #ordering by pick
+    if recommended:
+      topAgents = [recommended[0]]
+      for agentx in recommended:
+        for x,top in enumerate(topAgents) :
+          if agentx not in topAgents :
+            if dict[f'{mapString}{agentx}'] > dict[f'{mapString}{top}'] :
+              topAgents.insert(x,agentx)
+        if agentx not in topAgents :
+          topAgents.append(agentx)
+      for x,agentx in enumerate(topAgents) :
+        if x < 5:
+          topAgentsPrint.append(str(dict[f'{mapString}{topAgents[x]}'])+'.'+topAgents[x])
   #NOMAP      
   elif map[0] == 'noMap' :
-    recommended.append('Select_a_Map')
+    topAgentsPrint.append('Select_a_Map')
   #NO4AGENTS     
   elif len(agents) < 4 :
-    recommended.append('Select_4_Agents')
-  #PRO
-  if recommended and recommended[0] != 'Select_4_Agents' and recommended[0] != 'Select_a_Map' :
-    recommended.insert(0,'☆:')
+    topAgentsPrint.append('Select_4_Agents')
   #NOCLUE
-  if not recommended and len(agents) != 5:
-    recommended.append('Uncertain')
-    #MAKE COMP
-    make()
+  if not topAgentsPrint and len(agents) != 5:
+    topAgentsPrint.append('Uncertain')
 
   buttonRecomend['state'] = 'disabled'
   buttonSuggest['state'] = 'disabled'
   global label3
-  label3 = tk.Label(root, width = 43, text= recommended, bg='#0f1923', fg='white')
-  label3.config(font=('helvetica', 12))
+  label3 = tk.Label(root, width = 43, text= topAgentsPrint, bg='#0f1923', fg='white')
+  label3.config(font=('helvetica', 11))
   canvas1.create_window(200, 370, window=label3)
 fillPhoto = PhotoImage(file = "icons\ill.png")
 buttonRecomend = tk.Button(height = 22, width = 63, text='Fill', command=recommend, image = fillPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
@@ -283,23 +253,13 @@ def suggest ():
     clear()
     global label1
     comp = []
-    if map[0] == 'Ascent' :
-      comp = asc[random.randint(0,9)]
-    elif map[0] == 'Bind' :
-      comp = bnd[random.randint(0,9)]
-    elif map[0] == 'Breeze' :
-      comp = bre[random.randint(0,9)]
-    elif map[0] == 'Fracture' :
-      comp = fra[random.randint(0,9)]
-    elif map[0] == 'Haven' :
-      comp = hav[random.randint(0,9)]
-    elif map[0] == 'Icebox' :
-      comp = ice[random.randint(0,9)]
-    elif map[0] == 'Split' :
-      comp = spl[random.randint(0,9)]
     #NOMAP      
-    elif map[0] == 'noMap' :
+    if map[0] == 'noMap' :
       label1 = tk.Label(root, width = 55, text= 'Select_a_Map', bg='#0f1923', fg='white')
+    else:
+      mapString = map[0]
+      mapString = mapString[0].lower() + mapString[1] + mapString[2]
+      comp = eval(mapString)[random.randint(0,9)]
     for agent in comp:
         appendAgent(agent, eval(f'button{agent}'.replace(r'/','')), 1)
 
@@ -310,359 +270,57 @@ fullPhoto = PhotoImage(file = "icons\ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
 
-#AI COMP FILLER ####################################################
-def make ():
-  #controllerS, initiatorS, sentinelS, duelistS
-  compMake = [0,0,0,0,0]
-  suma = 0
-  counter = 0
-  counter2 = 0
-  if map[0] == 'Ascent' :
-    for x in range(0,5):
-      if x == 0 and any(x in controllerS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and ('Sova' in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and ('Cypher' in agents or 'Killjoy' in agents or 'Sage' in agents) :
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and (counter == 2 or 'KAY/O' in agents or 'Skye' in agents or 'Breach' in agents or 'Chamber' in agents) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Brimstone')
-      recommended.append('Omen')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Sova')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Killjoy')
-      recommended.append('Cypher')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Duelist')
-    elif compMake.index(0) == 4 and suma == 1:
-      recommended.clear()
-      recommended.append('Skye')
-      recommended.append('KAY/O')
-      recommended.append('Chamber')
-  elif map[0] == 'Bind' :
-    #duelistsMake = []
-    for x in range(0,5):
-      if x == 0 and any(x in sentinelS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and ('Sova' in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and any(x in controllerS for x in agents) :
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-            #duelistsMake.append(x)
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and (counter == 2 or 'Skye' in agents or 'Breach' in agents) : #(len(duelistsMake) == 2)
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Chamber')
-      recommended.append('Killjoy')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Sova')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Brimstone')
-      recommended.append('Omen')
-    elif (compMake.index(0) == 3 or compMake.index(0) == 4) and suma == 1:
-      recommended.clear()
-      #for element in duelistS:
-      #  if element not in duelistsMake :
-      #    recommended.append(element)  
-      recommended.append('Duelist')
-      recommended.append('Breach')
-      recommended.append('Skye')
-  elif map[0] == 'Breeze' :
-    for x in range(0,5):
-      if x == 0 and any(x in controllerS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and ('Sova' in agents or 'Skye' in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and ('Chamber' in agents or 'Cypher' in agents) :
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and (counter == 2 or 'KAY/O' in agents or 'Skye' in agents) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Viper')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Sova')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Chamber')
-      recommended.append('Cypher')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Jett')
-    elif compMake.index(0) == 4 and suma == 1:
-      recommended.clear()
-      recommended.append('Duelist')
-      recommended.append('KAY/O')
-      recommended.append('Skye')
-  elif map[0] == 'Fracture' :
-    for x in range(0,5):
-      if x == 0 and any(x in controllerS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and any(x in initiatorS for x in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and any(x in sentinelS for x in agents) :
-        for x in agents :
-          if x in sentinelS :
-            counter2 += 1
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and (counter == 2 or counter2 == 2) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Astra')
-      recommended.append('Brimstone')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Breach')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Jett')
-      recommended.append('Raze')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Chamber')
-    elif compMake.index(0) == 4 and suma == 1:
-      for x in agents : 
-        if x in sentinelS and x == 'Chamber':
-          recommended.clear()
-          recommended.append('Sentinel')
-        elif x in sentinelS :
-          recommended.clear()
-          recommended.append('Chamber')
-  elif map[0] == 'Haven' : 
-    for x in range(0,5):
-      if x == 0 and ('Astra' in agents or'Brimstone' in agents or 'Omen' in agents)  :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and any(x in sentinelS for x in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and ('Skye' in agents or 'KAY/O' in agents) or (counter == 2) :
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and ('Breach' in agents or 'Sova' in agents) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Brimstone')
-      recommended.append('Omen')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Chamber')
-      recommended.append('Cypher')
-      recommended.append('Killjoy')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Jett')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Skye')
-      recommended.append('KAY/O')
-    elif compMake.index(0) == 4 and suma == 1:
-      recommended.clear()
-      recommended.append('Sova')
-  elif map[0] == 'Icebox' :
-    for x in range(0,5):
-      if x == 0 and any(x in sentinelS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and any(x in controllerS for x in agents) :
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and ('Sova' in agents) :
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and ('Skye' in agents or 'KAY/O' in agents) or (counter == 2) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Chamber')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Viper')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Sova')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Jett')
-    elif compMake.index(0) == 4 and suma == 1:
-      recommended.clear()
-      recommended.append('Skye')
-      recommended.append('KAY/O')
-  elif map[0] == 'Split' :
-    for x in range(0,5):
-      if x == 0 and any(x in controllerS for x in agents) :
-        compMake[0] = 1
-      elif x == 0 :
-        suma += 1
-      if x == 1 and any(x in duelistS for x in agents) :
-        for x in agents :
-          if x in duelistS :
-            counter += 1
-        compMake[1] = 1
-      elif x == 1 :
-        suma += 1
-      if x == 2 and any(x in initiatorS for x in agents) :
-        compMake[2] = 1
-      elif x == 2 :
-        suma += 1
-      if x == 3 and ('Cypher' in agents or'Killjoy' in agents or counter == 2) :
-        compMake[3] = 1
-      elif x == 3 :
-        suma += 1
-      if x == 4 and ('Sage' in agents) :
-        compMake[4] = 1
-      elif x == 4 :
-        suma += 1
-    if compMake.index(0) == 0 and suma == 1:
-      recommended.clear()
-      recommended.append('Astra')
-      recommended.append('Omen')
-    elif compMake.index(0) == 1 and suma == 1:
-      recommended.clear()
-      recommended.append('Raze')
-    elif compMake.index(0) == 2 and suma == 1:
-      recommended.clear()
-      recommended.append('Breach')
-      recommended.append('Skye')
-    elif compMake.index(0) == 3 and suma == 1:
-      recommended.clear()
-      recommended.append('Cypher')
-      recommended.append('Killjoy')
-    elif compMake.index(0) == 4 and suma == 1:
-      recommended.clear()
-      recommended.append('Sage')
-
 #MAIN OF THE CODE ##################################################
 if __name__ == '__main__':
   buttons = [] #agent buttons
+  maps = [] #maps in Valorant
   agents = [] #agents selected
   map = [] #map selected
   map.append('noMap') #default map not selected
   recommended = [] #results
+  dict = {} #dictionary for agent pick rate per map
 
   #AGENT ROLES
   controllerS = ['Astra','Brimstone','Omen','Viper']
   initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
   sentinelS = ['Chamber','Cypher','Killjoy','Sage']
   duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
+  # duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru','NewAgent']             ++++++++++++++++++
 
   #COMPS
   asc = []
-  bnd = []
+  bin = []
   bre = []
   fra = []
   hav = []
   ice = []
   spl = []
-  comps = [asc,bnd,bre,fra,hav,ice,spl]
+  # newMap = []                                               ++++++++++++++++++
+  comps = [asc,bin,bre,fra,hav,ice,spl]
+  # comps = [asc,bin,bre,fra,hav,newMap,ice,spl]              ++++++++++++++++++
 
   #READ COMP FILES AND FILL COMP ARRAYS
   fileArray = []
   for file in listdir('./comps/'):
+    maps.append(str(file).replace('.csv','')) # add.csv for new map to dir             ++++++++++++++++++
     fileArray.append(file)
-  for x in range(0,len(listdir('./comps/'))):
-    file = open(f'./comps/{fileArray[x]}')
-    csvreader = csv.reader(file)
-    next(csvreader)
-    for row in csvreader:
-      comps[x].append(row)
-    file.close()
+  for x, filex in enumerate(fileArray):
+    try:
+      file = open(f'./comps/{filex}')
+      csvreader = csv.reader(file)
+      next(csvreader)
+      for row in csvreader:
+        comps[x].append(row)
+    finally:
+      file.close()
 
+  #MAKE DIC FOR AGENT WEIGHT
+  for mapx in maps: #iterates every map
+    stringx = mapx[0].lower() + mapx[1] + mapx[2]
+    for agentx in (controllerS + initiatorS + sentinelS + duelistS): #iterates every agent
+      weight = 0
+      for compx in eval(stringx): #iterates every comp
+        if agentx in compx:
+          weight += 1
+      dict[f'{stringx}{agentx}'] = weight #adds to dictionary times agent repeats per map
 root.mainloop()
