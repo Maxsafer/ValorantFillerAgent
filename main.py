@@ -1,4 +1,3 @@
-from queue import Empty
 import tkinter as tk
 from tkinter import * 
 from tkinter.ttk import *
@@ -13,7 +12,7 @@ root.resizable(False, False)
 root.iconbitmap("icons/valorant.ico")
 
 canvas1 = tk.Canvas(root, width = 400, height = 400, bg='#0f1923')
-bgPhoto = PhotoImage(file = "icons\Bg.png")
+bgPhoto = PhotoImage(file = "icons/Bg.png")
 canvas1.create_image(10, 10, image = bgPhoto, anchor = NW)
 canvas1.pack()
 
@@ -95,83 +94,83 @@ def appendAgent(name,button,five):
   canvas1.create_window(200, 300, window=label1)
   buttons.append(button) 
 #ASTRA
-astraPhoto = PhotoImage(file = "icons\Astra_icon.png")
+astraPhoto = PhotoImage(file = "icons/Astra_icon.png")
 buttonAstra = tk.Button(height = 21, width = 63, text='Astra', command=lambda:[appendAgent("Astra", buttonAstra, 0)], image = astraPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(60, 180, window=buttonAstra)
 #BREACH2
-breachPhoto = PhotoImage(file = "icons\Breach_icon.png")
+breachPhoto = PhotoImage(file = "icons/Breach_icon.png")
 buttonBreach = tk.Button(height = 21, width = 63, text='Breach', command=lambda:[appendAgent("Breach", buttonBreach, 0)], image = breachPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(130, 180, window=buttonBreach)
 #BRIM3
-brimstonePhoto = PhotoImage(file = "icons\Brimstone_icon.png")
+brimstonePhoto = PhotoImage(file = "icons/Brimstone_icon.png")
 buttonBrimstone = tk.Button(height = 21, width = 63, text='Brimstone', command=lambda:[appendAgent("Brimstone", buttonBrimstone, 0)], image = brimstonePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(200, 180, window=buttonBrimstone)
 #CHAMBER4
-chamberPhoto = PhotoImage(file = "icons\Chamber_icon.png")
+chamberPhoto = PhotoImage(file = "icons/Chamber_icon.png")
 buttonChamber = tk.Button(height = 21, width = 63, text='Chamber', command=lambda:[appendAgent("Chamber", buttonChamber, 0)], image = chamberPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 180, window=buttonChamber)
 #CYPHER5
-cypherPhoto = PhotoImage(file = "icons\Cypher_icon.png")
+cypherPhoto = PhotoImage(file = "icons/Cypher_icon.png")
 buttonCypher = tk.Button(height = 21, width = 63, text='Cypher', command=lambda:[appendAgent("Cypher", buttonCypher, 0)], image = cypherPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(340, 180, window=buttonCypher)
 #JETT6
-jettPhoto = PhotoImage(file = "icons\Jett_icon.png")
+jettPhoto = PhotoImage(file = "icons/Jett_icon.png")
 buttonJett = tk.Button(height = 21, width = 63, text='Jett', command=lambda:[appendAgent("Jett", buttonJett, 0)], image = jettPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(60, 210, window=buttonJett)
 #KO7
-kAYOPhoto = PhotoImage(file = "icons\KAYO_icon.png")
+kAYOPhoto = PhotoImage(file = "icons/KAYO_icon.png")
 buttonKAYO = tk.Button(height = 21, width = 63, text='KAY/O', command=lambda:[appendAgent("KAY/O", buttonKAYO, 0)], image = kAYOPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(130, 210, window=buttonKAYO)
 #KJ8
-killjoyPhoto = PhotoImage(file = "icons\Killjoy_icon.png")
+killjoyPhoto = PhotoImage(file = "icons/Killjoy_icon.png")
 buttonKilljoy = tk.Button(height = 21, width = 63, text='Killjoy', command=lambda:[appendAgent("Killjoy", buttonKilljoy, 0)], image = killjoyPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(200, 210, window=buttonKilljoy)
 #NEON9
-neonPhoto = PhotoImage(file = "icons\Killjoy1.png")
+neonPhoto = PhotoImage(file = "icons/Killjoy1.png")
 buttonNeon = tk.Button(height = 21, width = 63, text='Neon', command=lambda:[appendAgent("Neon", buttonNeon, 0)], image = neonPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 210, window=buttonNeon)
 #OMEN10
-omenPhoto = PhotoImage(file = "icons\Omen_icon.png")
+omenPhoto = PhotoImage(file = "icons/Omen_icon.png")
 buttonOmen = tk.Button(height = 21, width = 63, text='Omen', command=lambda:[appendAgent("Omen", buttonOmen, 0)], image = omenPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(340, 210, window=buttonOmen)
 #PHOENIX11
-phoenixPhoto = PhotoImage(file = "icons\Phoenix_icon.png")
+phoenixPhoto = PhotoImage(file = "icons/Phoenix_icon.png")
 buttonPhoenix = tk.Button(height = 21, width = 63, text='Phoenix', command=lambda:[appendAgent("Phoenix", buttonPhoenix, 0)], image = phoenixPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(60, 240, window=buttonPhoenix)
 #RAZE12
-razePhoto = PhotoImage(file = "icons\Raze_icon.png")
+razePhoto = PhotoImage(file = "icons/Raze_icon.png")
 buttonRaze = tk.Button(height = 21, width = 63, text='Raze', command=lambda:[appendAgent("Raze", buttonRaze, 0)], image = razePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(130, 240, window=buttonRaze)
 #REYNA13
-reynaPhoto = PhotoImage(file = "icons\Reyna_icon.png")
+reynaPhoto = PhotoImage(file = "icons/Reyna_icon.png")
 buttonReyna = tk.Button(height = 21, width = 63, text='Reyna', command=lambda:[appendAgent("Reyna", buttonReyna, 0)], image = reynaPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(200, 240, window=buttonReyna)
 #SAGE14
-sagePhoto = PhotoImage(file = "icons\Sage_icon.png")
+sagePhoto = PhotoImage(file = "icons/Sage_icon.png")
 buttonSage = tk.Button(height = 21, width = 63, text='Sage', command=lambda:[appendAgent("Sage", buttonSage, 0)], image = sagePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 240, window=buttonSage)
 #SKYE15
-skyePhoto = PhotoImage(file = "icons\Skye_icon.png")
+skyePhoto = PhotoImage(file = "icons/Skye_icon.png")
 buttonSkye = tk.Button(height = 21, width = 63, text='Skye', command=lambda:[appendAgent("Skye", buttonSkye, 0)], image = skyePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(340, 240, window=buttonSkye)
 #SOVA16
-sovaPhoto = PhotoImage(file = "icons\Sova_icon.png")
+sovaPhoto = PhotoImage(file = "icons/Sova_icon.png")
 buttonSova = tk.Button(height = 21, width = 63, text='Sova', command=lambda:[appendAgent("Sova", buttonSova, 0)], image = sovaPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(60, 270, window=buttonSova)
 #VIPER17
-viperPhoto = PhotoImage(file = "icons\Viper_icon.png")
+viperPhoto = PhotoImage(file = "icons/Viper_icon.png")
 buttonViper = tk.Button(height = 21, width = 63, text='Viper', command=lambda:[appendAgent("Viper", buttonViper, 0)], image = viperPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(130, 270, window=buttonViper)
 #YORU18
-yoruPhoto = PhotoImage(file = "icons\Yoru_icon.png")
+yoruPhoto = PhotoImage(file = "icons/Yoru_icon.png")
 buttonYoru = tk.Button(height = 21, width = 63, text='Yoru', command=lambda:[appendAgent("Yoru", buttonYoru, 0)], image = yoruPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(200, 270, window=buttonYoru)
 #FADE19
-fadePhoto = PhotoImage(file = "icons\Fade_icon.png")
+fadePhoto = PhotoImage(file = "icons/Fade_icon.png")
 buttonFade = tk.Button(height = 21, width = 63, text='Fade', command=lambda:[appendAgent("Fade", buttonFade, 0)], image = fadePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 270, window=buttonFade)
 # #MAX20                                                              ++++++++++++++++++
-# maxPhoto = PhotoImage(file = "icons\Max_icon.png")
+# maxPhoto = PhotoImage(file = "icons/Max_icon.png")
 # buttonMax = tk.Button(height = 21, width = 63, text='Max', command=lambda:[appendAgent("Max", buttonMax, 0)], image = maxPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 # canvas1.create_window(340, 270, window=buttonMax)
 
@@ -196,7 +195,7 @@ def clear ():
 
     buttonRecomend['state'] = 'normal'
     buttonSuggest['state'] = 'normal'
-clearPhoto = PhotoImage(file = "icons\clear.png")
+clearPhoto = PhotoImage(file = "icons/clear.png")
 buttonClear = tk.Button(height = 22, width = 63, text='Clear', command=clear, image = clearPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(130, 325, window=buttonClear)
 
@@ -242,7 +241,7 @@ def recommend ():
   label3 = tk.Label(root, width = 43, text= topAgentsPrint, bg='#0f1923', fg='white')
   label3.config(font=('helvetica', 11))
   canvas1.create_window(200, 370, window=label3)
-fillPhoto = PhotoImage(file = "icons\ill.png")
+fillPhoto = PhotoImage(file = "icons/ill.png")
 buttonRecomend = tk.Button(height = 22, width = 63, text='Fill', command=recommend, image = fillPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(200, 325, window=buttonRecomend)
 
@@ -266,7 +265,7 @@ def suggest ():
     canvas1.create_window(200, 300, window=label1)
     buttonRecomend['state'] = 'disabled'
     buttonSuggest['state'] = 'disabled'
-fullPhoto = PhotoImage(file = "icons\ill2.png")
+fullPhoto = PhotoImage(file = "icons/ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
 
