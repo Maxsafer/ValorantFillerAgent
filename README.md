@@ -1,5 +1,5 @@
 
-# Filler Agent
+# Valorant Filler Agent
 
 Software for Valorant Compositions based on Pro Matches.
 ####
@@ -47,6 +47,22 @@ Open the ".csv" file and add a row below the head with the desired composition a
 
 ####
 If you're planning on making your your own composition file, I recommend keeping it in alphabetical order so it's easier to spot repeated compositions.
+
+## Download
+####
+Download as .ZIP from this GitHub.
+#### 
+![alt text](https://drive.google.com/uc?export=view&id=1nnKBHeV-LQqsp8t1qFmaA21Vo9RaUL9H)
+
+###
+Drag and drop the folder from inside the .ZIP to anywhere on your system.
+#### 
+![alt text](https://drive.google.com/uc?export=view&id=15pCq5iN1SBkkwHcI01WHiA9d75uy82dh)
+
+###
+Read KeepExeHere.txt
+#### 
+![alt text](https://drive.google.com/uc?export=view&id=1X3oiUuACSAzfjMoHpachajZbebXLQdmc)
 
 
 ## Optimizations
