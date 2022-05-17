@@ -1,13 +1,10 @@
 
 # Valorant Filler Agent
-
+## Authors
+- [@Maxsafer](https://www.github.com/Maxsafer) aka classman
 Software for Valorant Compositions based on Pro Matches.
 ####
 ![alt text](https://drive.google.com/uc?export=view&id=1btD6Ww7JUm2eYO5r69SX9pvCwc19VSB9)
-## Authors
-
-- [@Maxsafer](https://www.github.com/Maxsafer) aka classman
-
 
 ## Screenshots
 
