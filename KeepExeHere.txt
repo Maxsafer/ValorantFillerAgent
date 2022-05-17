@@ -1,1 +1,1 @@
-KeepExeHere
+Keep .exe with "*/comps/" and "*/icons/" in the same directory. Any other file can be deleted or ignored.
