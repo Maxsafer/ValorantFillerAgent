@@ -131,5 +131,7 @@ dmypy.json
 # Files and dirs
 main-wAI.py
 toexe.txt
+.gitignore
+README.md
 main.spec
 TestScrap/
