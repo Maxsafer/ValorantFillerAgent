@@ -280,11 +280,12 @@ if __name__ == '__main__':
   recommended = [] #results
   dict = {} #dictionary for agent pick rate per map
 
-  #AGENT ROLES
-  controllerS = ['Astra','Brimstone','Omen','Viper']
-  initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
-  sentinelS = ['Chamber','Cypher','Killjoy','Sage']
-  duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
+  #AGENTS
+  allAgents = ['Astra','Brimstone','Omen','Viper','Breach','KAY/O','Skye','Sova','Fade','Chamber','Cypher','Killjoy','Sage','Jett','Neon','Phoenix','Raze','Reyna','Yoru']
+  # controllerS = ['Astra','Brimstone','Omen','Viper']
+  # initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
+  # sentinelS = ['Chamber','Cypher','Killjoy','Sage']
+  # duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
   # duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru','NewAgent']             ++++++++++++++++++
 
   #COMPS
@@ -317,7 +318,7 @@ if __name__ == '__main__':
   #MAKE DIC FOR AGENT WEIGHT
   for mapx in maps: #iterates every map
     stringx = mapx[0].lower() + mapx[1] + mapx[2]
-    for agentx in (controllerS + initiatorS + sentinelS + duelistS): #iterates every agent
+    for agentx in allAgents: #iterates every agent
       weight = 0
       for compx in eval(stringx): #iterates every comp
         if agentx in compx:
