@@ -33,13 +33,13 @@ Selects a top 10 PRO composition based on wins.
 ## Add/Import Compositions
 
 #### The user can ADD MORE compositions or IMPORT other users compositions files
-The path for the composition file is *"<appFolder>/comps/<map>.csv"* and can be edited from note pad.
+The path for the composition file is *"-appFolder-/comps/-map-.csv"* and can be edited from note pad.
 
 #### To IMPORT
 Simply replace the existing ".csv" file with the desired one.
 
 #### To ADD MORE
-Open the ".csv" file and add a row below the map name with the desired composition and dont forget to save the file. (The app needs to be restarted after a file change to reload compositions)
+Open the ".csv" file and add a row below the head with the desired composition and dont forget to save the file. (The app needs to be restarted after a file change to reload compositions)
 * ***Note*** There should NOT be an empty line.
 * ***Note*** Agents most be listed with commas and should be five, no more, no less, without exception. *E.g. Agent1,Agent2,Agent3,Agent4,Agent5*
 * ***Note*** Every agent starts with a single capital letter followed by lower cases (with KAY/O being an exception). *E.g. Killjoy*
