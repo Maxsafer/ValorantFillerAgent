@@ -1,5 +1,5 @@
 
-# Filler Agent
+# Valorant Filler Agent
 
 Software for Valorant Compositions based on Pro Matches.
 ####
