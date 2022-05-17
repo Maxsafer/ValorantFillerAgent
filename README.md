@@ -5,19 +5,19 @@
 ####
 Software for Valorant Compositions based on Pro Matches.
 ####
-![alt text](https://drive.google.com/uc?export=view&id=1btD6Ww7JUm2eYO5r69SX9pvCwc19VSB9)
+![Home](https://drive.google.com/uc?export=view&id=1btD6Ww7JUm2eYO5r69SX9pvCwc19VSB9)
 
 ## Screenshots
 
 #### Fill based on PRO matches
 Select 4 agents to get a compositions based on PRO matches.
 #### 
-![alt text](https://drive.google.com/uc?export=view&id=1BQ2EKViUNd9s_cr9qW9w1gI-CLiIQ3m2)
+![Fill](https://drive.google.com/uc?export=view&id=1BQ2EKViUNd9s_cr9qW9w1gI-CLiIQ3m2)
 
 #### Full composition recommended
 Selects a top 10 PRO composition based on wins.
 #### 
-![alt text](https://drive.google.com/uc?export=view&id=1v_tggvCTl-qCB9fCG7QiL7aNQHXuqh8i)
+![Full](https://drive.google.com/uc?export=view&id=1v_tggvCTl-qCB9fCG7QiL7aNQHXuqh8i)
 ## Usage/Examples
 #### [Fill] Get a recommendation on what agent should fill
 * A map must first be selected.
@@ -50,17 +50,17 @@ If you're planning on making your your own composition file, I recommend keeping
 ####
 Download as .ZIP from this GitHub.
 #### 
-![alt text](https://drive.google.com/uc?export=view&id=1nnKBHeV-LQqsp8t1qFmaA21Vo9RaUL9H)
+![Download](https://drive.google.com/uc?export=view&id=1nnKBHeV-LQqsp8t1qFmaA21Vo9RaUL9H)
 
 ####
 Drag and drop the folder from inside the .ZIP to anywhere on your system.
 #### 
-![alt text](https://drive.google.com/uc?export=view&id=15pCq5iN1SBkkwHcI01WHiA9d75uy82dh)
+![Dragndrop](https://drive.google.com/uc?export=view&id=15pCq5iN1SBkkwHcI01WHiA9d75uy82dh)
 
 ####
 Read KeepExeHere.txt
 #### 
-![alt text](https://drive.google.com/uc?export=view&id=1X3oiUuACSAzfjMoHpachajZbebXLQdmc)
+![Read](https://drive.google.com/uc?export=view&id=1X3oiUuACSAzfjMoHpachajZbebXLQdmc)
 
 
 ## Optimizations
