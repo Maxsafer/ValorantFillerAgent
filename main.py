@@ -250,24 +250,24 @@ canvas1.create_window(200, 325, window=buttonRecomend)
 
 #SUGGEST FULL COMP #################################################
 def suggest ():  
-    delLabel()
-    label3.destroy()
-    clear()
-    global label1
-    comp = []
-    #NOMAP      
-    if map[0] == 'noMap' :
-      label1 = tk.Label(root, width = 55, text= 'Select_a_Map', bg='#0f1923', fg='white')
-    else:
-      mapString = map[0]
-      mapString = mapString[0].lower() + mapString[1] + mapString[2]
-      comp = eval(mapString)[random.randint(0,9)]
-    for agent in comp:
-        appendAgent(agent, eval(f'button{agent}'.replace(r'/','')), 1)
+  delLabel()
+  label3.destroy()
+  clear()
+  global label1
+  comp = []
+  #NOMAP      
+  if map[0] == 'noMap' :
+    label1 = tk.Label(root, width = 55, text= 'Select_a_Map', bg='#0f1923', fg='white')
+  else:
+    mapString = map[0]
+    mapString = mapString[0].lower() + mapString[1] + mapString[2]
+    comp = eval(mapString)[random.randint(0,9)]
+  for agent in comp:
+      appendAgent(agent, eval(f'button{agent}'.replace(r'/','')), 1)
 
-    canvas1.create_window(200, 300, window=label1)
-    buttonRecomend['state'] = 'disabled'
-    buttonSuggest['state'] = 'disabled'
+  canvas1.create_window(200, 300, window=label1)
+  buttonRecomend['state'] = 'disabled'
+  buttonSuggest['state'] = 'disabled'
 fullPhoto = PhotoImage(file = "icons/ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
