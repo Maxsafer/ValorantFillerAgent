@@ -216,15 +216,17 @@ def recommend ():
     if recommended:
       topAgents = [recommended[0]]
       for agentx in recommended:
-        for x,top in enumerate(topAgents) :
+        for x,top in enumerate(topAgents):
           if agentx not in topAgents :
             if dict[f'{mapString}{agentx}'] > dict[f'{mapString}{top}'] :
               topAgents.insert(x,agentx)
         if agentx not in topAgents :
           topAgents.append(agentx)
-      for x,agentx in enumerate(topAgents) :
+      for x,agentx in enumerate(topAgents):
         if x < 5:
           topAgentsPrint.append(str(dict[f'{mapString}{topAgents[x]}'])+'.'+topAgents[x])
+        else:
+          break
   #NOMAP      
   elif map[0] == 'noMap' :
     topAgentsPrint.append('Select_a_Map')
@@ -234,6 +236,7 @@ def recommend ():
   #NOCLUE
   if not topAgentsPrint and len(agents) != 5:
     topAgentsPrint.append('Uncertain')
+    topAgentsPrint = make(topAgentsPrint)
 
   buttonRecomend['state'] = 'disabled'
   buttonSuggest['state'] = 'disabled'
@@ -269,6 +272,30 @@ fullPhoto = PhotoImage(file = "icons/ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
 
+def make (xprint): 
+  # controller, initiator, sentinel, duelist
+  roles = [0,0,0,0]
+  typesR = [controllerS, initiatorS, sentinelS, duelistS]
+  for agentx in agents:
+    for x,typex in enumerate(typesR):
+      if agentx in typex:
+        roles[x] = 1
+        break
+  if sum(roles) != 3:
+    return xprint
+  xprint.clear()
+  xprint.append("X:")
+  match roles:
+    case [0,1,1,1]:
+      xprint.append("Controller")
+    case [1,0,1,1]:
+      xprint.append("Initiator")
+    case [1,1,0,1]:
+      xprint.append("Sentinel")
+    case [1,1,1,0]:
+      xprint.append("Duelist")
+  return xprint
+      
 #MAIN OF THE CODE ##################################################
 if __name__ == '__main__':
   buttons = [] #agent buttons
@@ -280,11 +307,10 @@ if __name__ == '__main__':
   dict = {} #dictionary for agent pick rate per map
 
   #AGENTS
-  allAgents = ['Astra','Brimstone','Omen','Viper','Breach','KAY/O','Skye','Sova','Fade','Chamber','Cypher','Killjoy','Sage','Jett','Neon','Phoenix','Raze','Reyna','Yoru']
-  # controllerS = ['Astra','Brimstone','Omen','Viper']
-  # initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
-  # sentinelS = ['Chamber','Cypher','Killjoy','Sage']
-  # duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
+  controllerS = ['Astra','Brimstone','Omen','Viper']
+  initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
+  sentinelS = ['Chamber','Cypher','Killjoy','Sage']
+  duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
   # duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru','NewAgent']             ++++++++++++++++++
 
   #COMPS
@@ -317,7 +343,7 @@ if __name__ == '__main__':
   #MAKE DIC FOR AGENT WEIGHT
   for mapx in maps: #iterates every map
     stringx = mapx[0].lower() + mapx[1] + mapx[2]
-    for agentx in allAgents: #iterates every agent
+    for agentx in (controllerS + initiatorS + sentinelS + duelistS): #iterates every agent
       weight = 0
       for compx in eval(stringx): #iterates every comp
         if agentx in compx:
