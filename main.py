@@ -3,11 +3,13 @@ from tkinter import *
 from tkinter.ttk import *
 import random
 import csv
+import os
 from os import listdir, path
 
-root= tk.Tk()
+#MAIN FRAME ##################################################
+root = tk.Tk()
 root.title('FillerAgent v1.02 by classman')
-root.geometry("400x400")
+root.geometry("400x420")
 root.resizable(False, False)
 root.iconbitmap("icons/valorant.ico")
 
@@ -18,7 +20,6 @@ canvas1.pack()
 
 global label1
 label1 = tk.Label(root, text='')
-
 global label3
 label3 = tk.Label(root, text='')
 
@@ -38,17 +39,81 @@ label5 = tk.Label(root, text='Possible filler agents:', bg='#0f1923')
 label5.config(font=('helvetica', 10, 'bold'), fg='white')
 canvas1.create_window(200, 350, window=label5)
 
+#SECONDARY FRAMES ##################################################
+def disable_event():
+  pass
+#fillButton dropdown
+fillWindow = Toplevel(root,bg='#0f1923')
+fillWindow.title("[Help] for the 'Fill' button")
+tFill = "• The fill button will fill a composition recommending the top 5 agents in descending order that could complete a composition.\n\n• In order for it to work, a map and 4 agents must be selected."
+mFill = Message(fillWindow, text=tFill, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
+okButtonFill = tk.Button(fillWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
+fillWindow.withdraw()
+#fullButton dropdown
+fullWindow = Toplevel(root,bg='#0f1923')
+fullWindow.title("[Help] for the 'Full' button")
+tFull = "• The full button will select a top 10 composition played by professionals. These compositions are top 10 based on win rate.\n\n• If only 1 agent is selected, it will pop a composition with that agent."
+mFull = Message(fullWindow, text=tFull, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
+okButtonFull = tk.Button(fullWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
+fullWindow.withdraw()
+#symbolButton dropdown
+symbolWindow = Toplevel(root,bg='#0f1923')
+symbolWindow.title("[Help] for the symbol nomenclature")
+tSymbol = "☆: Means the composition was filled based on a pro composition.\n\nX Role: Means the composition was filled based on what role was missing from the composition."
+mSymbol = Message(symbolWindow, text=tSymbol, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
+okButtonSymbol = tk.Button(symbolWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
+symbolWindow.withdraw()
+#numberButton dropdown
+numberWindow = Toplevel(root,bg='#0f1923')
+numberWindow.title("[Help] what does the number mean")
+tNumber = "• The number on the agent list means the times an agent has been picked on the selected map.\n\n*Note* that the number does not mean the times that an agent has been picked with that composition."
+mNumber = Message(numberWindow, text=tNumber, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
+okButtonWindow = tk.Button(numberWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
+numberWindow.withdraw()
+
+#DROP DOWN MENU ##################################################
+def helpMenuOnclicks(string):
+  x = root.winfo_rootx() + 380
+  y = root.winfo_rooty() - 50
+  for menuButton in menuButtons:
+    menuButton.withdraw()
+    menuButton.protocol("WM_DELETE_WINDOW", disable_event)
+    menuButton.resizable(False, False)
+    menuButton.transient(root)
+    menuButton.iconbitmap("icons/valorant.ico")
+    menuButton.geometry(f'400x150+{x}+{y}')
+  match string:
+    case "Fill":
+      fillWindow.deiconify()
+    case "Full":
+      fullWindow.deiconify()
+    case "Symbol":
+      symbolWindow.deiconify()
+    case "Number":
+      numberWindow.deiconify()
+    case "Link":
+      os.system("start \"\" https://github.com/Maxsafer/ValorantFillerAgent")
+menubar = tk.Menu(root)
+filemenu = tk.Menu(menubar)
+filemenu = tk.Menu(menubar, tearoff=0)
+filemenu.add_command(label="Fill button", command=lambda:[helpMenuOnclicks("Fill")])
+filemenu.add_command(label="Full button", command=lambda:[helpMenuOnclicks("Full")])
+filemenu.add_command(label="What does '☆' or 'X' mean", command=lambda:[helpMenuOnclicks("Symbol")])
+filemenu.add_command(label="What does the number before an agent mean", command=lambda:[helpMenuOnclicks("Number")])
+filemenu.add_command(label="Take me to the Instructions on GitHub", command=lambda:[helpMenuOnclicks("Link")])
+menubar.add_cascade(label="Help", menu=filemenu)
+
 #SELECT MAPS ##################################################
-def selectMap (mapz, button): 
-    map.clear()
-    map.append(mapz)
-    recommended.clear()
-    label3.destroy()
-    buttonSuggest['state'] = 'normal'
-    buttonRecomend['state'] = 'normal'
-    for mapx in maps:
-      eval(f'button{mapx}')['state'] = 'normal'
-    button['state'] = 'disabled'
+def selectMap(mapz, button): 
+  map.clear()
+  map.append(mapz)
+  recommended.clear()
+  label3.destroy()
+  buttonSuggest['state'] = 'normal'
+  buttonRecomend['state'] = 'normal'
+  for mapx in maps:
+    eval(f'button{mapx}')['state'] = 'normal'
+  button['state'] = 'disabled'
 #ASCENT
 buttonAscent = tk.Button(height = 1, width = 8, text='Ascent', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Ascent", buttonAscent)], bg='#292929', fg='white', activebackground="#e04252")
 canvas1.create_window(60, 80, window=buttonAscent)
@@ -80,10 +145,10 @@ def appendAgent(name,button,five):
   buttonSuggest['state'] = 'normal'
   label3.destroy()
   if name in agents:
-        agents.remove(name)
-        nameLower = name[0].lower() + name[1:]
-        button.config(bg='white', height = 21, width = 63, image = eval(f'{nameLower}Photo'.replace(r'/','')))
-        buttons.remove(button)
+    agents.remove(name)
+    nameLower = name[0].lower() + name[1:]
+    button.config(bg='white', height = 21, width = 63, image = eval(f'{nameLower}Photo'.replace(r'/','')))
+    buttons.remove(button)
   elif len(agents) < 4 or five == 1:
     button.config(height = 1, width = 7, image = '', bg='#e04252') #formats the clicked button
     agents.append(name) #appends the clicked agent
@@ -176,31 +241,31 @@ canvas1.create_window(270, 270, window=buttonFade)
 
 #SELECT ACTIONS ####################################################
 #DELETE LABEL
-def delLabel (): 
+def delLabel(): 
   label1.destroy()
 
 #CLEARS
-def clear ():  
-    agents.clear() #clears agents selected array
-    recommended.clear() #clears agents recommended array
-    label1.destroy()
-    label3.destroy()
+def clear():  
+  agents.clear() #clears agents selected array
+  recommended.clear() #clears agents recommended array
+  label1.destroy()
+  label3.destroy()
 
-    #for loop each agent button selected and reset it
-    for button in buttons:
-      agentx = button['text']
-      agentx = agentx[0].lower() + agentx[1:]
-      button.config(bg='white', height = 21, width = 63, image = eval(f'{agentx}Photo'.replace(r'/','')))
-    buttons.clear() #clears agents button array
+  #for loop each agent button selected and reset it
+  for button in buttons:
+    agentx = button['text']
+    agentx = agentx[0].lower() + agentx[1:]
+    button.config(bg='white', height = 21, width = 63, image = eval(f'{agentx}Photo'.replace(r'/','')))
+  buttons.clear() #clears agents button array
 
-    buttonRecomend['state'] = 'normal'
-    buttonSuggest['state'] = 'normal'
+  buttonRecomend['state'] = 'normal'
+  buttonSuggest['state'] = 'normal'
 clearPhoto = PhotoImage(file = "icons/clear.png")
 buttonClear = tk.Button(height = 22, width = 63, text='Clear', command=clear, image = clearPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(130, 325, window=buttonClear)
 
 #RECOMMEND BASED ON PRO COMPS ######################################
-def recommend ():
+def recommend():
   recommended.clear()
   topAgentsPrint = []
   mapString = map[0]
@@ -214,19 +279,8 @@ def recommend ():
             recommended.append(element) 
     #ordering by pick
     if recommended:
-      topAgents = [recommended[0]]
-      for agentx in recommended:
-        for x,top in enumerate(topAgents):
-          if agentx not in topAgents :
-            if dict[f'{mapString}{agentx}'] > dict[f'{mapString}{top}'] :
-              topAgents.insert(x,agentx)
-        if agentx not in topAgents :
-          topAgents.append(agentx)
-      for x,agentx in enumerate(topAgents):
-        if x < 5:
-          topAgentsPrint.append(str(dict[f'{mapString}{topAgents[x]}'])+'.'+topAgents[x])
-        else:
-          break
+      topAgentsPrint = orderwDic(recommended,mapString)
+      topAgentsPrint.insert(0,'☆:')
   #NOMAP      
   elif map[0] == 'noMap' :
     topAgentsPrint.append('Select_a_Map')
@@ -236,7 +290,7 @@ def recommend ():
   #NOCLUE
   if not topAgentsPrint and len(agents) != 5:
     topAgentsPrint.append('Uncertain')
-    topAgentsPrint = make(topAgentsPrint)
+    topAgentsPrint = make(topAgentsPrint,mapString)
 
   buttonRecomend['state'] = 'disabled'
   buttonSuggest['state'] = 'disabled'
@@ -249,21 +303,35 @@ buttonRecomend = tk.Button(height = 22, width = 63, text='Fill', command=recomme
 canvas1.create_window(200, 325, window=buttonRecomend)
 
 #SUGGEST FULL COMP #################################################
-def suggest ():  
+def suggest():  
+  mapString = map[0]
+  mapString = mapString[0].lower() + mapString[1] + mapString[2]
   delLabel()
   label3.destroy()
-  clear()
   global label1
   comp = []
   #NOMAP      
   if map[0] == 'noMap' :
+    clear()
     label1 = tk.Label(root, width = 55, text= 'Select_a_Map', bg='#0f1923', fg='white')
+  elif len(agents) == 1:
+    compsWAgent = []
+    for compx in eval(mapString):
+      if agents[0] in compx and len(compsWAgent) <= 9:
+        compsWAgent.append(compx)
+      elif len(compsWAgent) == 10:
+        break
+    clear()
+    if compsWAgent:
+      comp = compsWAgent[random.randint(0,len(compsWAgent)-1)]
+    else:
+      label1 = tk.Label(root, width = 55, text= f'Not_Found', bg='#0f1923', fg='white')
   else:
-    mapString = map[0]
-    mapString = mapString[0].lower() + mapString[1] + mapString[2]
+    clear()
     comp = eval(mapString)[random.randint(0,9)]
+  
   for agent in comp:
-      appendAgent(agent, eval(f'button{agent}'.replace(r'/','')), 1)
+    appendAgent(agent, eval(f'button{agent}'.replace(r'/','')), 1)
 
   canvas1.create_window(200, 300, window=label1)
   buttonRecomend['state'] = 'disabled'
@@ -272,7 +340,8 @@ fullPhoto = PhotoImage(file = "icons/ill2.png")
 buttonSuggest = tk.Button(height = 22, width = 63, text='FullSuggest', command=suggest, image = fullPhoto, bg='#0f1923', borderwidth=0, activebackground="#0f1923")
 canvas1.create_window(270, 325, window=buttonSuggest)
 
-def make (xprint): 
+#NO COMP FOUND, RECOMMEND SOMETHING
+def make(xprint,mapString): 
   # controller, initiator, sentinel, duelist
   roles = [0,0,0,0]
   typesR = [controllerS, initiatorS, sentinelS, duelistS]
@@ -284,20 +353,43 @@ def make (xprint):
   if sum(roles) != 3:
     return xprint
   xprint.clear()
-  xprint.append("X:")
+  xprint.append("X")
   match roles:
     case [0,1,1,1]:
-      xprint.append("Controller")
+      xprint.append("Controller:")
+      xprint = xprint + orderwDic(typesR[0],mapString)
     case [1,0,1,1]:
-      xprint.append("Initiator")
+      xprint.append("Initiator:")
+      xprint = xprint + orderwDic(typesR[1],mapString)
     case [1,1,0,1]:
-      xprint.append("Sentinel")
+      xprint.append("Sentinel:")
+      xprint = xprint + orderwDic(typesR[2],mapString)
     case [1,1,1,0]:
-      xprint.append("Duelist")
+      xprint.append("Duelist:")
+      xprint = xprint + orderwDic(typesR[3],mapString)
   return xprint
-      
-#MAIN OF THE CODE ##################################################
+
+#ORDER AGENTS BY TIMES PICKED     
+def orderwDic(list,mapString):
+  topAgentsPrint = []
+  topAgents = [list[0]]
+  for agentx in list:
+    for x,top in enumerate(topAgents):
+      if agentx not in topAgents :
+        if dict[f'{mapString}{agentx}'] > dict[f'{mapString}{top}'] :
+          topAgents.insert(x,agentx)
+    if agentx not in topAgents :
+      topAgents.append(agentx)
+  for x,agentx in enumerate(topAgents):
+    if x < 5:
+      topAgentsPrint.append(str(dict[f'{mapString}{topAgents[x]}'])+'.'+topAgents[x])
+    else:
+      break
+  return topAgentsPrint
+
+#MAIN CODE ##################################################
 if __name__ == '__main__':
+  menuButtons = [fillWindow, fullWindow, symbolWindow, numberWindow] #help menu windows
   buttons = [] #agent buttons
   maps = [] #maps in Valorant
   agents = [] #agents selected
@@ -349,4 +441,5 @@ if __name__ == '__main__':
         if agentx in compx:
           weight += 1
       dict[f'{stringx}{agentx}'] = weight #adds to dictionary times agent repeats per map
+root.config(menu=menubar)
 root.mainloop()
