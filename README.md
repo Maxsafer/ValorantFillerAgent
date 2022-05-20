@@ -62,8 +62,9 @@ Read KeepExeHere.txt
 #### 
 ![Read](https://drive.google.com/uc?export=view&id=1X3oiUuACSAzfjMoHpachajZbebXLQdmc)
 
+## Test it online!
+(For better experience, download it)
+https://valorantfilleragent.jimdofree.com/
+
 ## Optimizations
 There is still a lot I would like to implement.
-
-## Test it online! (For better experience, download it)
-https://valorantfilleragent.jimdofree.com/
