@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import * 
 from tkinter.ttk import *
+from bs4 import BeautifulSoup
+import requests
+from datetime import datetime
 import random
 import csv
 import os
@@ -11,7 +14,7 @@ root = tk.Tk()
 root.title('FillerAgent v1.02 by classman')
 root.geometry("400x420")
 root.resizable(False, False)
-root.iconbitmap("icons/valorant.ico")
+root.iconbitmap(r"icons/valorant.ico")
 
 canvas1 = tk.Canvas(root, width = 400, height = 400, bg='#0f1923')
 bgPhoto = PhotoImage(file = "icons/Bg.png")
@@ -42,34 +45,36 @@ canvas1.create_window(200, 350, window=label5)
 #SECONDARY FRAMES ##################################################
 def disable_event():
   pass
-#fillButton dropdown
+#update check Window
+updateWindow = Toplevel(root,bg='#0f1923')
+updateWindow.title("[Update]")
+tUpdate = "A newer version has been detected. Please update to the latest version."
+mFill = Message(updateWindow, text=tUpdate, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
+okButtonUpdate = tk.Button(updateWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks(""),updateWindow.withdraw(),os.system("start \"\" https://github.com/Maxsafer/ValorantFillerAgent/archive/refs/heads/main.zip")]).pack(side = BOTTOM, anchor = S)
+#fillButton dropdown Window
 fillWindow = Toplevel(root,bg='#0f1923')
 fillWindow.title("[Help] for the 'Fill' button")
 tFill = "• The fill button will fill a composition recommending the top 5 agents in descending order that could complete a composition.\n\n• In order for it to work, a map and 4 agents must be selected."
 mFill = Message(fillWindow, text=tFill, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
-okButtonFill = tk.Button(fillWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
-fillWindow.withdraw()
-#fullButton dropdown
+okButtonFill = tk.Button(fillWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
+#fullButton dropdown Window
 fullWindow = Toplevel(root,bg='#0f1923')
 fullWindow.title("[Help] for the 'Full' button")
 tFull = "• The full button will select a top 10 composition played by professionals. These compositions are top 10 based on win rate.\n\n• If only 1 agent is selected, it will pop a composition with that agent."
 mFull = Message(fullWindow, text=tFull, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
-okButtonFull = tk.Button(fullWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
-fullWindow.withdraw()
-#symbolButton dropdown
+okButtonFull = tk.Button(fullWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
+#symbolButton dropdown Window
 symbolWindow = Toplevel(root,bg='#0f1923')
 symbolWindow.title("[Help] for the symbol nomenclature")
 tSymbol = "☆: Means the composition was filled based on a pro composition.\n\nX Role: Means the composition was filled based on what role was missing from the composition."
 mSymbol = Message(symbolWindow, text=tSymbol, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
-okButtonSymbol = tk.Button(symbolWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
-symbolWindow.withdraw()
-#numberButton dropdown
+okButtonSymbol = tk.Button(symbolWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
+#numberButton dropdown Window
 numberWindow = Toplevel(root,bg='#0f1923')
 numberWindow.title("[Help] what does the number mean")
 tNumber = "• The number on the agent list means the times an agent has been picked on the selected map.\n\n*Note* that the number does not mean the times that an agent has been picked with that composition."
 mNumber = Message(numberWindow, text=tNumber, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
-okButtonWindow = tk.Button(numberWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")],).pack(side = BOTTOM, anchor = S)
-numberWindow.withdraw()
+okButtonWindow = tk.Button(numberWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
 
 #DROP DOWN MENU ##################################################
 def helpMenuOnclicks(string):
@@ -387,6 +392,32 @@ def orderwDic(list,mapString):
       break
   return topAgentsPrint
 
+#CHECKS IF THERES AN UPDATE
+def updateCheck():
+  updateWindow.withdraw()
+  locallastedit = os.path.getmtime('./comps')
+  locallastedit = datetime.fromtimestamp(locallastedit).strftime('%Y-%m-%d')
+  html_text = requests.get('https://github.com/Maxsafer/ValorantFillerAgent').text
+  soup = BeautifulSoup(html_text, 'lxml')
+  try:
+    templastedit = soup.find("time-ago", class_ = 'no-wrap').get('datetime')
+    lastedit = ''
+    for x in range(0,10):
+      lastedit = f'{lastedit}{templastedit[x]}'
+  except:
+    print('gitHub did not load...')
+    lastedit = locallastedit
+  # print(lastedit)
+  # print(locallastedit)
+  if lastedit != locallastedit:
+    x = root.winfo_rootx() - 8
+    y = root.winfo_rooty() - 35
+    updateWindow.resizable(False, False)
+    updateWindow.transient(root)
+    updateWindow.iconbitmap("icons/valorant.ico")
+    updateWindow.geometry(f'400x80+{x}+{y}')
+    updateWindow.deiconify()
+
 #MAIN CODE ##################################################
 if __name__ == '__main__':
   menuButtons = [fillWindow, fullWindow, symbolWindow, numberWindow] #help menu windows
@@ -397,6 +428,9 @@ if __name__ == '__main__':
   map.append('noMap') #default map not selected
   recommended = [] #results
   dict = {} #dictionary for agent pick rate per map
+
+  helpMenuOnclicks('')
+  updateCheck()
 
   #AGENTS
   controllerS = ['Astra','Brimstone','Omen','Viper']
