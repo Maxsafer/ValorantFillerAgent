@@ -413,7 +413,7 @@ def updateCheck():
   except:
     print('gitHub did not load...')
     lastedit = locallastedit
-  if sum(lastedit) > sum(locallastedit):
+  if (lastedit[0]+lastedit[1] > locallastedit[0]+locallastedit[1]) or ((lastedit[0]+lastedit[1] == locallastedit[0]+locallastedit[1]) and lastedit[2] > locallastedit[2]):
     x = root.winfo_rootx() - 8
     y = root.winfo_rooty() - 35
     updateWindow.resizable(False, False)
