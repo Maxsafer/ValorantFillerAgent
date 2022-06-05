@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter.ttk import *
 from bs4 import BeautifulSoup
 import requests
+import time
 from datetime import datetime
 import random
 import csv
@@ -397,19 +398,22 @@ def updateCheck():
   updateWindow.withdraw()
   locallastedit = os.path.getmtime('./comps')
   locallastedit = datetime.fromtimestamp(locallastedit).strftime('%Y-%m-%d')
+  locallastedit = locallastedit.split('-')
+  locallastedit = int(locallastedit[0]),int(locallastedit[1]),int(locallastedit[2])
   html_text = requests.get('https://github.com/Maxsafer/ValorantFillerAgent').text
   soup = BeautifulSoup(html_text, 'lxml')
   try:
+    time.sleep(.5)
     templastedit = soup.find("time-ago", class_ = 'no-wrap').get('datetime')
     lastedit = ''
     for x in range(0,10):
       lastedit = f'{lastedit}{templastedit[x]}'
+    lastedit = lastedit.split('-')
+    lastedit = int(lastedit[0]),int(lastedit[1]),int(lastedit[2])
   except:
     print('gitHub did not load...')
     lastedit = locallastedit
-  # print(lastedit)
-  # print(locallastedit)
-  if lastedit != locallastedit:
+  if sum(lastedit) > sum(locallastedit):
     x = root.winfo_rootx() - 8
     y = root.winfo_rooty() - 35
     updateWindow.resizable(False, False)
