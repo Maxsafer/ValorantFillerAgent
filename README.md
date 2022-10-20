@@ -5,19 +5,19 @@
 ####
 Software for Valorant Compositions based on Pro Matches.
 ####
-![Home](https://drive.google.com/uc?export=view&id=1btD6Ww7JUm2eYO5r69SX9pvCwc19VSB9)
+![Home](https://drive.google.com/uc?export=view&id=1RFcM5UE1G91RD5yq3LszxtoetzgH2tVQ)
 
 ## Screenshots
 
 #### Fill based on PRO matches
 Select 4 agents to get a compositions based on PRO matches.
 #### 
-![Fill](https://drive.google.com/uc?export=view&id=1BQ2EKViUNd9s_cr9qW9w1gI-CLiIQ3m2)
+![Fill](https://drive.google.com/uc?export=view&id=1rSWU__7_cYkMAym5M9YMoVhF2TLAQJsm)
 
 #### Full composition recommended
 Selects a top 10 PRO composition based on wins.
 #### 
-![Full](https://drive.google.com/uc?export=view&id=1v_tggvCTl-qCB9fCG7QiL7aNQHXuqh8i)
+![Full](https://drive.google.com/uc?export=view&id=1RRGSX6IrvL0ZSI_g_Z7WF-tFIwPVdwxE)
 ## Usage/Examples
 #### [Fill] Get a recommendation on what agent should fill
 * A map must first be selected.
@@ -64,7 +64,7 @@ Read KeepExeHere.txt
 
 ## Test it online!
 https://valorantfilleragent.jimdofree.com/
-(For better experience, download it)
+(Download it for a better experience)
 
 ## Optimizations
 There is still a lot I would like to implement.
