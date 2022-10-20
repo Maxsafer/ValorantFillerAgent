@@ -1,18 +1,18 @@
-import tkinter as tk
-from tkinter import * 
-from tkinter.ttk import *
-from bs4 import BeautifulSoup
-import requests
-import time
+from collections import Counter
 from datetime import datetime
+from bs4 import BeautifulSoup
+from os import listdir, path
+from tkinter.ttk import *
+from tkinter import * 
+import tkinter as tk
+import requests
 import random
 import csv
 import os
-from os import listdir, path
 
 #MAIN FRAME ##################################################
 root = tk.Tk()
-root.title('FillerAgent v1.02 by classman')
+root.title('FillerAgent v1.03 by classman')
 root.geometry("400x420")
 root.resizable(False, False)
 root.iconbitmap(r"icons/valorant.ico")
@@ -27,11 +27,11 @@ label1 = tk.Label(root, text='')
 global label3
 label3 = tk.Label(root, text='')
 
-label6 = tk.Label(root, text='Filler Agent v1.02', bg='#0f1923')
+label6 = tk.Label(root, text='Filler Agent v1.03', bg='#0f1923')
 label6.config(font=('helvetica', 14, 'bold'), fg='white')
 canvas1.create_window(200, 30, window=label6)
 
-label4 = tk.Label(root, text='(MAY2022 4.08)', bg='#0f1923')
+label4 = tk.Label(root, text='(OCT2022 5.08)', bg='#0f1923')
 label4.config(font=('helvetica', 10), fg='white')
 canvas1.create_window(200, 52, window=label4)
 
@@ -67,13 +67,13 @@ okButtonFull = tk.Button(fullWindow,height = 1, width = 8,text='Ok',bg='red', fg
 #symbolButton dropdown Window
 symbolWindow = Toplevel(root,bg='#0f1923')
 symbolWindow.title("[Help] for the symbol nomenclature")
-tSymbol = "☆: Means the composition was filled based on a pro composition.\n\nX Role: Means the composition was filled based on what role was missing from the composition."
+tSymbol = "☆: Means the composition was filled based on a pro composition.\n\nX: Composition was filled based on an analysis. (This requires previous knowledge to understand what is a good recommendation)"
 mSymbol = Message(symbolWindow, text=tSymbol, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
 okButtonSymbol = tk.Button(symbolWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
 #numberButton dropdown Window
 numberWindow = Toplevel(root,bg='#0f1923')
 numberWindow.title("[Help] what does the number mean")
-tNumber = "• The number on the agent list means the times an agent has been picked on the selected map.\n\n*Note* that the number does not mean the times that an agent has been picked with that composition."
+tNumber = "• The number on the agent list represents the times an agent has been picked on the selected map.\n\n*Note* It does not represent the times that an agent has been picked with that composition."
 mNumber = Message(numberWindow, text=tNumber, width = 380, bg = "#0f1923", font=('helvetica', 12, 'bold'), fg='white').pack(side=TOP, anchor=N)
 okButtonWindow = tk.Button(numberWindow,height = 1, width = 8,text='Ok',bg='red', fg='white',font=('helvetica', 9, 'bold'), activebackground="#292929",command=lambda:[helpMenuOnclicks("")]).pack(side = BOTTOM, anchor = S)
 
@@ -141,9 +141,12 @@ canvas1.create_window(60, 110, window=buttonIcebox)
 #SPLIT
 buttonSplit = tk.Button(height = 1, width = 8, text='Split', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Split", buttonSplit)], bg='#292929', fg='white', activebackground="#e04252")
 canvas1.create_window(130, 110, window=buttonSplit)
+#PEARL
+buttonPearl = tk.Button(height = 1, width = 8, text='Pearl', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Pearl", buttonPearl)], bg='#292929', fg='white', activebackground="#e04252")
+canvas1.create_window(200, 110, window=buttonPearl)
 # #HELL                                                               ++++++++++++++++++
 # buttonHell = tk.Button(height = 1, width = 8, text='Hell', font=('helvetica', 9, 'bold'), command=lambda:[selectMap("Hell", buttonHell)], bg='#292929', fg='white', activebackground="#e04252")
-# canvas1.create_window(200, 110, window=buttonHell)
+# canvas1.create_window(270, 110, window=buttonHell)
 
 #SELECT AGENTS ############################################
 def appendAgent(name,button,five):  
@@ -240,6 +243,10 @@ canvas1.create_window(200, 270, window=buttonYoru)
 fadePhoto = PhotoImage(file = "icons/Fade_icon.png")
 buttonFade = tk.Button(height = 21, width = 63, text='Fade', command=lambda:[appendAgent("Fade", buttonFade, 0)], image = fadePhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
 canvas1.create_window(270, 270, window=buttonFade)
+#HARBOR20
+harborPhoto = PhotoImage(file = "icons/Harbor_icon.png")
+buttonHarbor = tk.Button(height = 21, width = 63, text='Harbor', command=lambda:[appendAgent("Harbor", buttonHarbor, 0)], image = harborPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
+canvas1.create_window(340, 270, window=buttonHarbor)
 # #MAX20                                                              ++++++++++++++++++
 # maxPhoto = PhotoImage(file = "icons/Max_icon.png")
 # buttonMax = tk.Button(height = 21, width = 63, text='Max', command=lambda:[appendAgent("Max", buttonMax, 0)], image = maxPhoto, bg='white', borderwidth=0, activebackground="white",disabledforeground='black', font=('helvetica', 11, 'bold'),fg='black')
@@ -356,27 +363,61 @@ def make(xprint,mapString):
       if agentx in typex:
         roles[x] = 1
         break
-  if sum(roles) != 3:
-    return xprint
   xprint.clear()
-  xprint.append("X")
-  match roles:
-    case [0,1,1,1]:
-      xprint.append("Controller:")
-      xprint = xprint + orderwDic(typesR[0],mapString)
-    case [1,0,1,1]:
-      xprint.append("Initiator:")
-      xprint = xprint + orderwDic(typesR[1],mapString)
-    case [1,1,0,1]:
-      xprint.append("Sentinel:")
-      xprint = xprint + orderwDic(typesR[2],mapString)
-    case [1,1,1,0]:
-      xprint.append("Duelist:")
-      xprint = xprint + orderwDic(typesR[3],mapString)
+  xprint.append("X:")
+  if sum(roles) != 3:
+    xprint = xprint + secondMake(mapString)
+  else:
+    match roles:
+      case [0,1,1,1]:
+        xprint.insert(0, "Controller")
+        xprint = xprint + orderwDic(typesR[0],mapString)
+      case [1,0,1,1]:
+        xprint.insert(0, "Initiator")
+        xprint = xprint + orderwDic(typesR[1],mapString)
+      case [1,1,0,1]:
+        xprint.insert(0, "Sentinel")
+        xprint = xprint + orderwDic(typesR[2],mapString)
+      case [1,1,1,0]:
+        xprint.insert(0, "Duelist")
+        xprint = xprint + orderwDic(typesR[3],mapString)
   return xprint
 
+#MAKE() METHOD FAILED, TRY THIS
+def secondMake(mapString):
+  roleToAgent = []
+  agentsType = agentType(agents)
+  for compx in eval(mapString):
+    typeCompx = agentType(compx)
+    if set(agentsType) == set(['C', 'I', 'S', 'D']):
+      diff = list((Counter(typeCompx) - Counter(agentsType)).elements())
+      for x,typex in enumerate(typeCompx):
+        if typex == diff[0] and compx[x] not in agents and compx[x] not in roleToAgent:
+          roleToAgent.append(compx[x])
+  if roleToAgent: return orderwDic(roleToAgent, mapString)
+  else: return ['Not_Found']
+
+#GETS SELECTED AGENTS AGENT TYPE
+def agentType(agentList):
+  typesR = [controllerS, initiatorS, sentinelS, duelistS]
+  receivedTypes = []
+  for agentx in agentList:
+    for x,typex in enumerate(typesR):
+      if agentx in typex:
+        match x:
+          case 0:
+            receivedTypes.append('C')
+          case 1:
+            receivedTypes.append('I')
+          case 2:
+            receivedTypes.append('S')
+          case 3:
+            receivedTypes.append('D')
+        break
+  return receivedTypes
+
 #ORDER AGENTS BY TIMES PICKED     
-def orderwDic(list,mapString):
+def orderwDic(list, mapString):
   topAgentsPrint = []
   topAgents = [list[0]]
   for agentx in list:
@@ -400,20 +441,18 @@ def updateCheck():
   locallastedit = datetime.fromtimestamp(locallastedit).strftime('%Y-%m-%d')
   locallastedit = locallastedit.split('-')
   locallastedit = int(locallastedit[0]),int(locallastedit[1]),int(locallastedit[2])
-  html_text = requests.get('https://github.com/Maxsafer/ValorantFillerAgent').text
+  html_text = requests.get('https://valorantfilleragent.jimdofree.com/').text
   soup = BeautifulSoup(html_text, 'lxml')
   try:
-    time.sleep(.5)
-    templastedit = soup.find("time-ago", class_ = 'no-wrap').get('datetime')
-    lastedit = ''
-    for x in range(0,10):
-      lastedit = f'{lastedit}{templastedit[x]}'
+    lastedit = soup.find('div', id = 'fecha').text
     lastedit = lastedit.split('-')
     lastedit = int(lastedit[0]),int(lastedit[1]),int(lastedit[2])
+
   except:
-    print('gitHub did not load...')
+    print('Repo did not load...')
     lastedit = locallastedit
-  if (lastedit[0]+lastedit[1] > locallastedit[0]+locallastedit[1]) or ((lastedit[0]+lastedit[1] == locallastedit[0]+locallastedit[1]) and lastedit[2] > locallastedit[2]):
+
+  if (lastedit[0]+lastedit[1] > locallastedit[0]+locallastedit[1]) or ((lastedit[0]+lastedit[1] == locallastedit[0]+locallastedit[1]) and (lastedit[2] > locallastedit[2])):
     x = root.winfo_rootx() - 8
     y = root.winfo_rooty() - 35
     updateWindow.resizable(False, False)
@@ -429,7 +468,7 @@ if __name__ == '__main__':
   maps = [] #maps in Valorant
   agents = [] #agents selected
   map = [] #map selected
-  map.append('noMap') #default map not selected
+  map.append('noMap') #default, map not selected
   recommended = [] #results
   dict = {} #dictionary for agent pick rate per map
 
@@ -437,7 +476,7 @@ if __name__ == '__main__':
   updateCheck()
 
   #AGENTS
-  controllerS = ['Astra','Brimstone','Omen','Viper']
+  controllerS = ['Astra','Brimstone','Omen','Viper','Harbor']
   initiatorS = ['Breach','KAY/O','Skye','Sova','Fade']
   sentinelS = ['Chamber','Cypher','Killjoy','Sage']
   duelistS = ['Jett','Neon','Phoenix','Raze','Reyna','Yoru']
@@ -451,8 +490,9 @@ if __name__ == '__main__':
   hav = []
   ice = []
   spl = []
+  pea = []
   # newMap = []                                               ++++++++++++++++++
-  comps = [asc,bin,bre,fra,hav,ice,spl]
+  comps = [asc,bin,bre,fra,hav,ice,pea,spl]
   # comps = [asc,bin,bre,fra,hav,newMap,ice,spl]              ++++++++++++++++++
 
   #READ COMP FILES AND FILL COMP ARRAYS
