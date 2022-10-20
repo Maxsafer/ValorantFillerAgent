@@ -8,13 +8,14 @@ Software for Valorant Compositions based on Pro Matches.
 ![Home](https://drive.google.com/uc?export=view&id=1RFcM5UE1G91RD5yq3LszxtoetzgH2tVQ)
 ####
 Features:
+####
 Fills a 4 agent composition with the 5th.
   * Based on pro composition = ☆:
   * Based on what role is missing = Role X:
   * Based on what other compositions with the same structure chose = X:
-Gives a Full composition based on win rate.
-Gives a Full composition that uses a specific selected agent.
-Notifies when there is a new version.
+  * Gives a Full composition based on win rate.
+  * Gives a Full composition that uses a specific selected agent.
+  * Notifies when there is a new version.
 
 ## Screenshots
 
@@ -30,17 +31,18 @@ Selects a top 10 PRO composition based on wins.
 #### 
 Selects a top 10 PRO composition based on wins and one agent selected.
 #### 
-![Full](https://drive.google.com/uc?export=view&id=1-l_nvl9bATrKJ5ucq5_LATotimXHlBD6)(https://drive.google.com/uc?export=view&id=1K09Q3tT_O6lZWhkOZL69UcgXhyiVoEcM)
+![Fullone](https://drive.google.com/uc?export=view&id=1-l_nvl9bATrKJ5ucq5_LATotimXHlBD6)
+![Fullone](https://drive.google.com/uc?export=view&id=1K09Q3tT_O6lZWhkOZL69UcgXhyiVoEcM)
 
 #### Menu
 Help drop down menu.
 #### 
-![Help](https://drive.google.com/uc?export=view&id=1rSWU__7_cYkMAym5M9YMoVhF2TLAQJsm)
+![Help](https://drive.google.com/uc?export=view&id=1mRgD-o_a147JeFsL3xRrIaS918t8kzcP)
 
 #### Updates
 Notifies the user when theres an update.
 #### 
-![Help](https://drive.google.com/uc?export=view&id=1VETc8iO3hi3jbTXXIptBJg99mRRVgjjb)
+![Update](https://drive.google.com/uc?export=view&id=1VETc8iO3hi3jbTXXIptBJg99mRRVgjjb)
 
 ## Usage/Examples
 #### [Fill] Get a recommendation on what agent should fill
@@ -59,7 +61,7 @@ Notifies the user when theres an update.
 * ☆: Means the composition was filled based on a pro composition.
 * X: Composition was filled based on an analysis. (This requires previous knowledge to understand what is a good recommendation)
 * The number on the agent list represents the times an agent has been picked on the selected map.
-* *Note* The number does not represent the times that an agent has been picked with that composition.
+* ***Note*** The number does not represent the times that an agent has been picked with that composition.
 
 ## Add/Import Compositions
 #### The user can ADD MORE compositions or IMPORT other users compositions files
