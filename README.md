@@ -19,12 +19,12 @@ Fills a 4 agent composition with the 5th.
 
 ## Screenshots
 
-#### Fill based on PRO matches
+#### <u>Fill based on PRO matches</u>
 Select 4 agents to get a compositions based on PRO matches.
 #### 
 ![Fill](https://drive.google.com/uc?export=view&id=1rSWU__7_cYkMAym5M9YMoVhF2TLAQJsm)
 
-#### Full composition recommended
+#### <u>Full composition recommended</u>
 Selects a top 10 PRO composition based on wins.
 #### 
 ![Full](https://drive.google.com/uc?export=view&id=1RRGSX6IrvL0ZSI_g_Z7WF-tFIwPVdwxE)
@@ -34,13 +34,13 @@ Selects a top 10 PRO composition based on wins and one agent selected.
 ![Fullone](https://drive.google.com/uc?export=view&id=1-l_nvl9bATrKJ5ucq5_LATotimXHlBD6)
 ![Fullone](https://drive.google.com/uc?export=view&id=1K09Q3tT_O6lZWhkOZL69UcgXhyiVoEcM)
 
-#### Menu
+#### <u>Menu</u>
 Help drop down menu.
 #### 
 ![Help](https://drive.google.com/uc?export=view&id=1mRgD-o_a147JeFsL3xRrIaS918t8kzcP)
 
-#### Updates
-Notifies the user when theres an update.
+#### <u>Updates</u>
+Notifies the user when ther is an update.
 #### 
 ![Update](https://drive.google.com/uc?export=view&id=1VETc8iO3hi3jbTXXIptBJg99mRRVgjjb)
 
