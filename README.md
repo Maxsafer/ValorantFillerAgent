@@ -6,6 +6,15 @@
 Software for Valorant Compositions based on Pro Matches.
 ####
 ![Home](https://drive.google.com/uc?export=view&id=1RFcM5UE1G91RD5yq3LszxtoetzgH2tVQ)
+####
+Features:
+Fills a 4 agent composition with the 5th.
+  * Based on pro composition = ☆:
+  * Based on what role is missing = Role X:
+  * Based on what other compositions with the same structure chose = X:
+Gives a Full composition based on win rate.
+Gives a Full composition that uses a specific selected agent.
+Notifies when there is a new version.
 
 ## Screenshots
 
@@ -18,18 +27,41 @@ Select 4 agents to get a compositions based on PRO matches.
 Selects a top 10 PRO composition based on wins.
 #### 
 ![Full](https://drive.google.com/uc?export=view&id=1RRGSX6IrvL0ZSI_g_Z7WF-tFIwPVdwxE)
+#### 
+Selects a top 10 PRO composition based on wins and one agent selected.
+#### 
+![Full](https://drive.google.com/uc?export=view&id=1-l_nvl9bATrKJ5ucq5_LATotimXHlBD6)(https://drive.google.com/uc?export=view&id=1K09Q3tT_O6lZWhkOZL69UcgXhyiVoEcM)
+
+#### Menu
+Help drop down menu.
+#### 
+![Help](https://drive.google.com/uc?export=view&id=1rSWU__7_cYkMAym5M9YMoVhF2TLAQJsm)
+
+#### Updates
+Notifies the user when theres an update.
+#### 
+![Help](https://drive.google.com/uc?export=view&id=1VETc8iO3hi3jbTXXIptBJg99mRRVgjjb)
+
 ## Usage/Examples
 #### [Fill] Get a recommendation on what agent should fill
-* A map must first be selected.
-* 4 agents must be selected. (The agents picked will appear as they are being selected below the agent grid)
-* Proceed to click on "Fill" and a list with the possible filler agents will appear bellow ordered by times picked. (The number on the left of the agent represents the times picked)
+* The fill button will fill a composition recommending the top 5 agents in descending order that could complete a composition.
+* In order for it to work, a map and 4 agents must be selected.
+
 #### [Full] Get a recommendation on what composition to play based on PRO matches
-* A map must first be selected.
+* The full button will select a top 10 composition played by professionals. These compositions are top 10 based on win rate.
+* If only 1 agent is selected, it will pop a composition with that agent.
 * Proceed to click on "Full" and a random PRO composition will be selected. (It can be modified by deselecting any agent and then clicking "Fill")
+
 #### [Clear] Clears agents selected and output text
 * Clears the selected agents or outputs displayed.
-## Add/Import Compositions
 
+#### [Symbols] Used to represent the output type.
+* ☆: Means the composition was filled based on a pro composition.
+* X: Composition was filled based on an analysis. (This requires previous knowledge to understand what is a good recommendation)
+* The number on the agent list represents the times an agent has been picked on the selected map.
+* *Note* The number does not represent the times that an agent has been picked with that composition.
+
+## Add/Import Compositions
 #### The user can ADD MORE compositions or IMPORT other users compositions files
 The path for the composition file is *"-appFolder-/comps/-map-.csv"* and can be edited from note pad.
 
